@@ -12,8 +12,6 @@ It's suggested to begin with a small question set and add more questions when th
 
 Removing old questions is not suggested, since memory recall tends to [fade with time](https://en.wikipedia.org/wiki/Decay_theory) if a certain question is not practiced anymore for a long time.
 
-Note: For a lot of tasks, the script often assumes you have set up at least 2 hosts named server 1 and 2, which will usually have the role of server and client.
-
 
 # Usage
 
@@ -24,5 +22,6 @@ Generate a new question each time ENTER is pressed:
 Generate  20 questions at once and then exit:
 
 > sh linux-random.sh 20
+
 
 
