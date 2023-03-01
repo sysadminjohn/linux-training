@@ -1,6 +1,6 @@
 # linux-training
 
-This is a simple and minimalistic script that outputs a random question from a customizable set of problems. 
+This is a simple and minimalistic script that outputs a random question from a customizable set of problems. It is a mnemonics tool which can be made to work with all sorts of exam topics, not just IT related.
 
 It can be used as a self-training tool to auto generate exams for all kinds of certifications and to make sure you remember the solution you have learned for each of the questions you have listed.
 
