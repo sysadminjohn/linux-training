@@ -8,7 +8,9 @@ Where you source these sample exam questions from is up to you. The point of the
 
 The general idea is that the script is run continuously until you never hit a question that you can't solve. 
 
-It's suggested to begin with a small question set so that you can add more questions to the list. Removing old questions is not suggested, since memory recall tends to [fade with time](https://en.wikipedia.org/wiki/Decay_theory) if a certain question is not practiced anymore for a long time.
+It's suggested to begin with a small question set and add more questions when the initial set becomes 'easy'. You can add questions to the pool in a disabled state, if you wish, following the syntax and instructions inside the linux-random.sh itself. 
+
+Removing old questions is not suggested, since memory recall tends to [fade with time](https://en.wikipedia.org/wiki/Decay_theory) if a certain question is not practiced anymore for a long time.
 
 Note: For a lot of tasks, the script often assumes you have set up at least 2 hosts named server 1 and 2, which will usually have the role of server and client.
 
