@@ -11,7 +11,7 @@
 #	Set up a local repository from a RHEL iso file. Mount it locally and install packages from there. Do it again but this time have this repo be available in the entire LAN
 #	In your hypervisor, create a virtual network that has no DHCP and is ipv6 enabled. Install a new RHEL instance on a fresh virtual machine on that same network in unattended mode, using an install iso and an answer file that is served by a NFS share by server 1, providing its location through ipv6 addressing
 #	Create two volumes, ext4 and xfs. Perform filesystem checks on both. Dump the content of a broken xfs partition into another
-#	Make journalctl logs persistent
+#	Make journalctl logs persistent, then list the most recent SELinux alerts in detail with sealert
 #	Simulate a log rotation with a certain configuration, showing what would happen
 #	Mention the difference between using '' and "" in bash
 #	Create a cronjob that only runs from Mon to Fri between 11 pm and 7 am every 20 minutes and outputs "MAINTENANCE WINDOW" to the journalctl and to all active shells

@@ -14,7 +14,9 @@ fi
 
 if [[ -z "$1" ]] ; then	
 	while true ; do
+	
 		shuf -n 1 question-pool.txt
+
 		read continue
 		clear
 	done 
@@ -22,7 +24,9 @@ else
 		echo "QUESTION SET:"
 		echo "============================================================"
 		echo ""
+
 		shuf -n $1 question-pool.txt
+
 		echo ""
 		echo "============================================================"
 		echo ""

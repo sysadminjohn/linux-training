@@ -8,7 +8,7 @@ Where you source these sample exam questions from is up to you. The point of the
 
 The general idea is that the script is run continuously until you never hit a question that you can't solve. 
 
-It's suggested to begin with a small question set and add more questions when the initial set becomes 'easy'. You can add questions to the pool in a disabled state, if you wish, following the syntax and instructions inside the linux-random.sh itself. 
+It's suggested to begin with a small question set and add more questions when the initial set becomes 'easy'.
 
 Removing old questions is not suggested, since memory recall tends to [fade with time](https://en.wikipedia.org/wiki/Decay_theory) if a certain question is not practiced anymore for a long time.
 
