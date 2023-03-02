@@ -17,7 +17,7 @@
 # QQ #	Create a Stratis pool named 'data' that spans two disks with two filesystems named 'external' and 'internal'. Make sure it lists two devices and two filesystems. snapshot external, remove a file from 'external' fs. Access the removed file from the snapshot. Remove everything and return to a clean volume
 # QQ #	Boot into emergency and rescue modes, list the differences between the two
 # QQ #	Use systemctl to choose whether to boot to GUI or to TEXT mode
-# QQ #	Set up a local repository from a RHEL iso file
+# QQ #	Set up a local repository from a RHEL iso file. Mount it locally and install packages from there. Do it again but this time have this repo be available in the entire LAN
 # QQ #	In your hypervisor, create a virtual network that has no DHCP and is ipv6 enabled. Install a new RHEL instance on a fresh virtual machine on that same network in unattended mode, using an install iso and an answer file that is served by a NFS share by server 1, providing its location through ipv6 addressing
 # QQ #	Create two volumes, ext4 and xfs. Perform filesystem checks on both. Dump the content of a broken xfs partition into another
 # QQ #	Make journalctl logs persistent
