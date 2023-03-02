@@ -65,7 +65,8 @@
 # QQ #	Create a job that runs a dnf update daily at 9 am. If the host is down at 9am, make sure it still runs the task as soon as host is turned on
 # QQ #	Write a script that checks for the existence of folder /myfolder and exits with code 3 if it doesn't exist. If the folder exists, create 400 numbered folders in it, each one containing the subfolders "in" and "out", without using cycles. Simulate the script and verify it runs after creating the folder. Repeat the task using a for and while cycle
 # QQ #	Set up a VM to get a ipv6 address and connect to it succesfully through SSH. List several ways or configuration modifications that would break networking
-# QQ #	Set up two hosts and manually configure ipv4 networking without using a DHCP. Make sure you can connect to both hosts and that they ping each other
+# QQ #	Set up two hosts and manually configure ipv4 and ipv6 networking without using a DHCP. Make sure you can connect to both hosts and that they ping each other. Connect with SSH that is listening on a nonstandard port and install keys using ipv6 protocol
+
 
 ######################################################################################################################################
 
