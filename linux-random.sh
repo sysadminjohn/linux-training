@@ -31,8 +31,7 @@
 # QQ #	Create a custom tuned profile with associated comment that sets swappiness to 42 and persists between boots. Show which profile is currently on before setting the new one
 # QQ #	Check current timezone, set a new one and then go back to the correct one. Set a random, wrong time of the day. Set up the host to sync with ntp.pool.org, verify that sources are set and force a sync immediately
 # QQ #	Create a thin provisioned LVM volume that offers data deduplication, with size 10G that exposes a size of 100G
-# QQ #	Set up a NFS server on server 1 and expose /homes with 3 user folders in it, then on server 2 set up a solution that mounts the user folders on demand 
-# QQ #	Set up a NFS server on server 1 and expose /nfsdata/internal, then on server 2 set up a solution that mounts the internal folder on demand 
+# QQ #	Set up a NFS server on server 1 and expose /nfsdata/internal and /homes with 3 user folders in it, then on server 2 set up a solution that mounts the user folders on demand. Also set up a persistent mount of /nfsdata/internal
 # QQ #	Set up Apache in a nondefault documentroot /web with nondefault port 89 and ensure SELinux is configured properly to accommodate these choices
 # QQ #	Create and terminate a zombie process
 # QQ #	Using kernel parameters, put all CPU cores offline except one, then launch 'sleep 3000' and 'sleep 6000' processes. Send them in background, then experiment with their scheduling and nice value so that either 3000 or 6000 gets the most CPU. At the end, reenable all the CPU cores
