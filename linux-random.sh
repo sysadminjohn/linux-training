@@ -18,6 +18,7 @@
 # QQ #	Boot into emergency and rescue modes, list the differences between the two
 # QQ #	Use systemctl to choose whether to boot to GUI or to TEXT mode
 # QQ #	Set up a local repository from a RHEL iso file
+# QQ #	In your hypervisor, create a virtual network that has no DHCP and is ipv6 enabled. Install a new RHEL instance on a fresh virtual machine on that same network in unattended mode, using an answer file that is served by a NFS share by server 1, using ipv6
 # QQ #	Create two volumes, ext4 and xfs. Perform filesystem checks on both. Dump the content of a broken xfs partition into another
 # QQ #	Make journalctl logs persistent
 # QQ #	Simulate a log rotation with a certain configuration, showing what would happen
