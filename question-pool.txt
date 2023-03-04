@@ -9,7 +9,7 @@
 #	Boot into emergency and rescue modes, list the differences between the two
 #	Use systemctl to choose whether to boot to GUI or to TEXT mode
 #	Set up a local repository from a RHEL iso file. Mount it locally and install packages from there. Do it again but this time have this repo be available in the entire LAN
-#	In your hypervisor, create a virtual network that has no DHCP and is ipv6 enabled. Install a new RHEL instance on a fresh virtual machine on that same network in unattended mode, using an install iso and an answer file that is served by a NFS share by server 1, providing its location through ipv6 addressing
+#	In your hypervisor, create a virtual network that has no DHCP and is ipv6 enabled. Install a new RHEL instance on a fresh virtual machine on that same network in unattended mode, using an install iso and an answer file that is served by a NFS share by server 1. Mention how you'd point to that answer file if it was on a local usb key attached to the fresh vm
 #	Create two volumes, ext4 and xfs. Perform filesystem checks on both. Dump the content of a broken xfs partition into another
 #	Make journalctl logs persistent, then list the most recent SELinux alerts in detail with sealert
 #	Simulate a log rotation with a certain configuration, showing what would happen
