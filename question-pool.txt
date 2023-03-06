@@ -43,7 +43,7 @@
 #	List all sysctl variables. Persistently set vm swappiness to 6 without using any tuned profile. If a tuned profile is also set, make sure it doesn't override your new vm swappiness
 #	Update grub so that SELinux is disabled on next boot for all kernels. Also make sure that the initial grub timeout is set to 1 second
 #	Use a single command to persistently enable firewall services: rpc-bind mountd nfs
-#	Using firewalld, for the internal zone only, non-persistently allow all traffic from source 10.0.0.10/24. Using the same command, verify that the setting applied
+#	Using firewalld, for the internal zone only, non-persistently allow all traffic from source 10.0.0.10/24 and block all the communications from 10.0.0.11/24. Verify that the setting applied
 #	Copy /etc/shadow to /tmp/test in a such way that the same SELinux attributes are kept. Do it again without preserving the attributes but fix them manually and persistently
 #	Create a config file to do an unattended install of RHEL. Make it so that it asks for root password on each install but establish at least a specific timezone and keyboard layout. Verify the syntax is correct
 #	Use systemd-tmpfiles to clean /tmp every 90 minutes, by using /etc/tmpfiles.d/tmp.conf
@@ -52,7 +52,6 @@
 #	Set up ssh on a nonstandard port. Perform a dry run of a destructive rsync between /etc of server1 and /etc of server2 using ssh on that port. Verify that the sync only shows files that are different and not the entire /etc
 #	Get a successful run of sealert command
 #	Create users 'beta', 'gamma' and 'delta'. User 'gamma' needs to set his password on the first login, 'beta' doesn't allow interactive shell login at all. User 'delta' password must be changed every 90 days at most but not sooner than 7 days
-#	Using firewalld, block all the communications from a specific ip
 #	Add user 'alice' to sudoers and ensure it can run a 'dnf update' without password
 #	Demonstrate and describe usage of skopeo and buildah
 #	Create a cronjob that executes daily at 5 am and which runs a script called 'latest.sh'. The script generates a list of all the files that have been created in the past 24 hours and writes it to /newfiles.txt
@@ -61,4 +60,6 @@
 #	Set up a VM to get a ipv6 address and connect to it succesfully through SSH. List several ways or configuration modifications that would break networking
 #	Set up two hosts and manually configure ipv4 and ipv6 networking without using a DHCP. Make sure you can connect to both hosts and that they ping each other. Connect with SSH that is listening on a nonstandard port and install keys using ipv6 protocol
 #   Taking /etc/selinux/config file, only show the lines that don't begin with a comment (#) and that aren't empty
+#   Show which tags are currently associated with port 80 (use a grep switch that ignores partial word matches like 8080), then add the same tag to port 8080
+#   Without using ls, recursively list all the folder contexts of /var/run subfolders. Do the same with 'ls', recursively listing only the folders. When done, create a new folder named /mytest and give it the context httpd_log_t. Make sure it applies to any new files created inside that folder
 #   
