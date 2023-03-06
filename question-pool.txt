@@ -19,7 +19,6 @@
 #	Create a cronjob that only runs from Mon to Fri between 11 pm and 7 am every 20 minutes and outputs "MAINTENANCE WINDOW" to the journalctl and to all active shells
 #	Using grep, show all the lines of /etc/shadow that do not begin with 'pippo', do not end with 'bob', contain '!' but also have to contain ':' OR '$', then also show the previous and next 3 lines
 #	Create a tar archive named 'test' from folder /etc with and without gzip compression, then extract it. Try again with xz compression
-#   Write 
 #	Using sed, replace all occurrences of the word 'alice' with 'bob' in all and only the .cfg files in the folder /myfolder. Prepare it beforehand with 2 .cfg files that contain a few lines with the words "alice" and "bob"
 #	Using awk, show only the column 3 of /etc/shadow assuming separator ':'
 #   Write a script that takes two strings as bash parameters and outputs "OK" if they are the same string, "DIFF" otherwise 
@@ -40,14 +39,14 @@
 #	Create a folder /special and set permissions so that 'alice' and 'bob', belonging to two different groups, can both read and write to the folder, but not anyone else 
 #	Create a folder /external and set permissions so that 1) it belongs to group 'external' 2) every new file belongs to 'external' 3) users can only remove the files they create 4) a script with content `sleep infinity` in the folder always runs as owner user regardless of who launches it
 #	Without using sleep or cronjobs, plan a command to be executed in 2 minutes and another at time 17:55:22. Confirm both are queued
-#	Set a cronjob for user 'alice' so that at 6.45 am, 7.45 am and 8.45 am every day, a script is run. The script sends a mail with subject "Subject" and body "Body" to root@localhost. Variabilize the script so that Subject and Body are passed from the cronjob
-#	Read all sysctl variables. Persistently set vm swappiness to 6 without using any tuned profile. If a tuned profile is also set, make sure it doesn't override your new vm swappiness
+#	Set a cronjob for user 'alice' so that at 6.45 am, 7.45 am and 8.45 am every day, a script is run. The script sends a mail with subject "Subject" and body "Body" to root@localhost. Variabilize the script so that Subject and Body are passed from the cronjob entry
+#	List all sysctl variables. Persistently set vm swappiness to 6 without using any tuned profile. If a tuned profile is also set, make sure it doesn't override your new vm swappiness
 #	Update grub so that SELinux is disabled on next boot for all kernels. Also make sure that the initial grub timeout is set to 1 second
 #	Use a single command to persistently enable firewall services: rpc-bind mountd nfs
 #	Using firewalld, for the internal zone only, non-persistently allow all traffic from source 10.0.0.10/24. Using the same command, verify that the setting applied
 #	Copy /etc/shadow to /tmp/test in a such way that the same SELinux attributes are kept. Do it again without preserving the attributes but fix them manually and persistently
 #	Create a config file to do an unattended install of RHEL. Make it so that it asks for root password on each install but establish at least a specific timezone and keyboard layout. Verify the syntax is correct
-#	Use systemd-tmpfiles to clean /tmp every 3 days, by using /etc/tmpfiles.d/tmp.conf
+#	Use systemd-tmpfiles to clean /tmp every 90 minutes, by using /etc/tmpfiles.d/tmp.conf
 #	Show the current gateway of the default podman network
 #	Create a script that outputs the sum of the numbers contained in two environment variables and read those variables from another file. Send that output to stderr
 #	Set up ssh on a nonstandard port. Perform a dry run of a destructive rsync between /etc of server1 and /etc of server2 using ssh on that port. Verify that the sync only shows files that are different and not the entire /etc
@@ -61,4 +60,5 @@
 #	Write a script that checks for the existence of folder /myfolder and exits with code 3 if it doesn't exist. If the folder exists, create 400 numbered folders in it, each one containing the subfolders "in" and "out", without using cycles. Simulate the script and verify it runs after creating the folder. Repeat the task using a for and while cycle
 #	Set up a VM to get a ipv6 address and connect to it succesfully through SSH. List several ways or configuration modifications that would break networking
 #	Set up two hosts and manually configure ipv4 and ipv6 networking without using a DHCP. Make sure you can connect to both hosts and that they ping each other. Connect with SSH that is listening on a nonstandard port and install keys using ipv6 protocol
-#   Taking /etc/selinux/config file, only show the lines that don't begin with a comment and that aren't empty
+#   Taking /etc/selinux/config file, only show the lines that don't begin with a comment (#) and that aren't empty
+#   
