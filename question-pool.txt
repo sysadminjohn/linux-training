@@ -9,7 +9,7 @@
 #	Boot into emergency and rescue modes, list the differences between the two
 #	Use systemctl to choose whether to boot to GUI or to TEXT mode
 #	Set up a local repository from a RHEL iso file. Mount it locally and install packages from there. Do it again but this time have this repo be available in the entire LAN
-#	In your hypervisor, create a virtual network that has no DHCP and is ipv6 enabled. Install a new RHEL instance on a fresh virtual machine on that same network in unattended mode, using an install iso and an answer file that is served by a NFS share by server 1. Mention how you'd point to that answer file if it was on a local usb key attached to the fresh vm
+#	In your hypervisor, create a virtual network that has no DHCP and is ipv6 enabled. Install a new RHEL instance on a fresh virtual machine on that same network in unattended mode, using an install iso and an answer file that is served by a NFS share by host 1. Mention how you'd point to that answer file if it was on a local usb key attached to the fresh vm
 #	Create two volumes, ext4 and xfs. Perform filesystem checks on both. Dump the content of a broken xfs partition into another
 #	Make journalctl logs persistent, then list the most recent SELinux alerts in detail with sealert
 #	Simulate a log rotation with a certain configuration, showing what would happen
@@ -26,7 +26,7 @@
 #	Create a custom tuned profile with associated comment that sets swappiness to 42 and persists between boots. Show which profile is currently on before setting the new one
 #	Check current timezone, set a new one and then go back to the correct one. Set a random, wrong time of the day. Set up the host to sync with ntp.pool.org, verify that sources are set and force a sync immediately
 #	Create a thin provisioned LVM volume that offers data deduplication, with size 10G that exposes a size of 100G
-#	Set up a NFS server on server 1 and expose /nfsdata/internal and /homes with 3 user folders in it, then on server 2 set up a solution that mounts the user folders on demand. Also set up a persistent mount of /nfsdata/internal
+#	Set up a NFS server on host 1 and expose /nfsdata/internal and /homes with 3 user folders in it, then on host 2 set up a solution that mounts the user folders on demand. Also set up a persistent mount of /nfsdata/internal
 #	Set up Apache in a nondefault documentroot /web with nondefault port 89 and ensure SELinux is configured properly to accommodate these choices
 #	Create and terminate a zombie process
 #	Using kernel parameters, put all CPU cores offline except one, then launch 'sleep 3000' and 'sleep 6000' processes. Send them in background, then experiment with their scheduling and nice value so that either 3000 or 6000 gets the most CPU. At the end, reenable all the CPU cores
@@ -48,8 +48,9 @@
 #	Create a config file to do an unattended install of RHEL. Make it so that it asks for root password on each install but establish at least a specific timezone and keyboard layout. Verify the syntax is correct
 #	Use systemd-tmpfiles to clean /tmp every 90 minutes, by using /etc/tmpfiles.d/tmp.conf
 #	Show the current gateway of the default podman network
+#   List all SELinux booleans and non-persistently set a specific one from off to on, then list all the booleans that changed in this session and ensure it only shows the one you edited without using grep
 #	Create a script that outputs the sum of the numbers contained in two environment variables and read those variables from another file. Send that output to stderr
-#	Set up ssh on a nonstandard port. Perform a dry run of a destructive rsync between /etc of server1 and /etc of server2 using ssh on that port. Verify that the sync only shows files that are different and not the entire /etc
+#	Set up ssh on a nonstandard port. Perform a dry run of a destructive rsync between /etc of host 1 and /etc of host 2 using ssh on that port. Verify that the sync only shows files that are different and not the entire /etc
 #	Get a successful run of sealert command
 #	Create users 'beta', 'gamma' and 'delta'. User 'gamma' needs to set his password on the first login, 'beta' doesn't allow interactive shell login at all. User 'delta' password must be changed every 90 days at most but not sooner than 7 days
 #	Add user 'alice' to sudoers and ensure it can run a 'dnf update' without password
@@ -60,6 +61,6 @@
 #	Set up a VM to get a ipv6 address and connect to it succesfully through SSH. List several ways or configuration modifications that would break networking
 #	Set up two hosts and manually configure ipv4 and ipv6 networking without using a DHCP. Make sure you can connect to both hosts and that they ping each other. Connect with SSH that is listening on a nonstandard port and install keys using ipv6 protocol
 #   Taking /etc/selinux/config file, only show the lines that don't begin with a comment (#) and that aren't empty
-#   Show which tags are currently associated with port 80 (use a grep switch that ignores partial word matches like 8080), then add the same tag to port 8080
-#   Without using ls, recursively list all the folder contexts of /var/run subfolders. Do the same with 'ls', recursively listing only the folders. When done, create a new folder named /mytest and give it the context httpd_log_t. Make sure it applies to any new files created inside that folder
+#   Show which SELinux tags are currently associated with port 80 (use a grep switch that ignores partial word matches like 8080), then add the same tag to port 8080
+#   Using the appropriate tool, recursively list all the SELinux contexts of /var/run subfolders. Do the same with 'ls', recursively listing only the folders. When done, create a new folder named /mytest and give it the context httpd_log_t. Make sure it applies to the folder immediately and to any new files created inside that folder
 #   
