@@ -54,6 +54,7 @@
 #	Create users 'beta', 'gamma' and 'delta'. User 'gamma' needs to set his password on the first login, 'beta' doesn't allow interactive shell login at all. User 'delta' password must be changed every 90 days at most but not sooner than 7 days
 #	Add user 'alice' to sudoers and ensure it can run a 'dnf update' without password
 #	Demonstrate and describe usage of skopeo and buildah
+#   Create a podman network with both ipv4 and ipv6 networking configured. Both networks should have subnet masks that allow for 16 addresses (14 hosts) only. Mention how many bits are needed to represent a single hexadecimal digit  
 #	Create a cronjob that executes daily at 5 am and which runs a script called 'latest.sh'. The script generates a list of all the files that have been created in the past 24 hours and writes it to /newfiles.txt
 #	Create a job that runs a dnf update daily at 9 am. If the host is down at 9am, make sure it still runs the task as soon as host is turned on
 #	Write a script that checks for the existence of folder /myfolder and exits with code 3 if it doesn't exist. If the folder exists, create 400 numbered folders in it, each one containing the subfolders "in" and "out", without using cycles. Simulate the script and verify it runs after creating the folder. Repeat the task using a for and while cycle
