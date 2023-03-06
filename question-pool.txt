@@ -3,7 +3,7 @@
 #	Reset the root password using at least 3 methods
 #	Create a small script that echoes the word "TEST" for n times, where n is the first parameter passed to the script. If the script is run without parameters, ask for n in stdin. If the user inputs an invalid n, exit with exit code 4
 #	Create a partition that fills the entire disk, format it, then resize it to make room for another partition without breaking the previous fs
-#	Set up a new disk with MBR partitioning scheme. Create a volume in /storage using LVM, using 16MiB extents and with size 200 extents, verify both parameters are correctly set. Make an ext4 filesystem on it with 0% reserved blocks. Add one disk and span that filesystem across two physical disks. Remove everything and clean the fs and lvm headers
+#	Set up a new disk with MBR partitioning scheme. Create a volume in /storage using LVM, using 16MiB extents and with size 200 extents, verify both parameters are correctly set. Make an ext4 filesystem on it with 0% reserved blocks. Add one disk and span that filesystem across two physical disks. When done, move the LV to a third, bigger, disk and remove both the smaller ones, then remove everything and clean the fs and lvm headers
 #	Create a Stratis pool named 'data' that spans two disks with two filesystems named 'external' and 'internal'. Make sure it lists two devices and two filesystems. snapshot external, remove a file from 'external' fs. Access the removed file from the snapshot. Remove everything and return to a clean volume
 #	Boot into emergency and rescue modes, list the differences between the two
 #	Use systemctl to choose whether to boot to GUI or to TEXT mode
@@ -25,7 +25,7 @@
 #	Create a custom tuned profile with associated comment that sets swappiness to 42 and persists between boots. Show which profile is currently on before setting the new one
 #	Check current timezone, set a new one and then go back to the correct one. Set a random, wrong time of the day. Set up the host to sync with ntp.pool.org, verify that sources are set and force a sync immediately
 #	Create a thin provisioned LVM volume that offers data deduplication, with size 10G that exposes a size of 100G
-#	Set up a NFS server on host 1 and expose /nfsdata/internal and /homes with 3 user folders in it, then on host 2 set up a solution that mounts the user folders on demand. Also set up a persistent mount of /nfsdata/internal
+#	Set up a NFS server on host 1 and expose /nfsdata/internal and /homes with 2 user folders in it, then on host 2 set up a solution that mounts the corresponding /homes/user{1,2,3} on demand. Create another config that also persistently maps /nfsdata/internal folder from host 1 to /internal folder on host 2. All mounts should have immediate synchronization of written data with the server
 #	Set up Apache in a nondefault documentroot /web with nondefault port 89 and ensure SELinux is configured properly to accommodate these choices
 #	Create two rootless podman containers, mysql and a httpd. Make sure they start before users log in, can resolve each other by hostname and have persistent storage. Use network 10.10.1.0 with subnet mask 255.255.255.128 and make sure containers have statically assigned ipv6 addresses. After a reboot, without logging into the user, check if container is running. Run an arbitrary command on the containers while they are up. If all is ok, show the logs and top of the container, then stop it and return to a clean state. 
 #	Create and terminate a zombie process
@@ -50,7 +50,7 @@
 #   List all SELinux booleans and non-persistently set a specific one from off to on, then list all the booleans that changed in this session and ensure it only shows the one you edited without using grep
 #	Create a script that outputs the sum of the numbers contained in two environment variables and read those variables from another file. Send that output to stderr
 #	Set up ssh on a nonstandard port. Perform a dry run of a destructive rsync between /etc of host 1 and /etc of host 2 using ssh on that port. Verify that the sync only shows files that are different and not the entire /etc
-#	Get a successful run of sealert command
+#	Demonstrate the usage of sealert command
 #	Create users 'beta', 'gamma' and 'delta'. User 'gamma' needs to set his password on the first login, 'beta' doesn't allow interactive shell login at all. User 'delta' password must be changed every 90 days at most but not sooner than 7 days
 #	Add user 'alice' to sudoers and ensure it can run a 'dnf update' without password
 #	Demonstrate and describe usage of skopeo and buildah
