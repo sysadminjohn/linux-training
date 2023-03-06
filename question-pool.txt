@@ -30,7 +30,6 @@
 #	Set up Apache in a nondefault documentroot /web with nondefault port 89 and ensure SELinux is configured properly to accommodate these choices
 #	Create and terminate a zombie process
 #	Using kernel parameters, put all CPU cores offline except one, then launch 'sleep 3000' and 'sleep 6000' processes. Send them in background, then experiment with their scheduling and nice value so that either 3000 or 6000 gets the most CPU. At the end, reenable all the CPU cores
-#	Visit the Network Manager interface configuration path
 #	Regenerate grub assuming both BIOS and EFI boot. Remove all the initramfs files in /boot and try to boot. Solve the situation and get a bootable system again
 #	Make room on an existing disk for a new swap partition and use it persistently. Increase swap further creating a new persistent swap volume but, for this second swap space, don't use a partition
 #	Make sure that user bob cannot create cronjobs
@@ -59,7 +58,7 @@
 #	Create a job that runs a dnf update daily at 9 am. If the host is down at 9am, make sure it still runs the task as soon as host is turned on
 #	Write a script that checks for the existence of folder /myfolder and exits with code 3 if it doesn't exist. If the folder exists, create 400 numbered folders in it, each one containing the subfolders "in" and "out", without using cycles. Simulate the script and verify it runs after creating the folder. Repeat the task using a for and while cycle
 #	Set up a VM to get a ipv6 address and connect to it succesfully through SSH. List several ways or configuration modifications that would break networking
-#	Set up two hosts and manually configure ipv4 and ipv6 networking without using a DHCP. Make sure you can connect to both hosts and that they ping each other. Connect with SSH that is listening on a nonstandard port and install keys using ipv6 protocol
+#	Set up two hosts and manually configure ipv4 and ipv6 networking without using a DHCP. Make sure you can connect to both hosts and that they ping each other. Connect with SSH that is listening on a nonstandard port and install keys using ipv6 protocol and then visit the newly created config file
 #   Taking /etc/selinux/config file, only show the lines that don't begin with a comment (#) and that aren't empty
 #   Show which SELinux tags are currently associated with port 80 (use a grep switch that ignores partial word matches like 8080), then add the same tag to port 8080
 #   Using the appropriate tool, recursively list all the SELinux contexts of /var/run subfolders. Do the same with 'ls', recursively listing only the folders. When done, create a new folder named /mytest and give it the context httpd_log_t. Make sure it applies to the folder immediately and to any new files created inside that folder
