@@ -12,15 +12,15 @@
 #	Create two volumes, ext4 and xfs. Perform filesystem checks on both. Dump the content of a broken xfs partition into another
 #	Make journalctl logs persistent, then list the most recent SELinux alerts in detail with sealert
 #	Simulate a log rotation with a certain configuration, showing what would happen
-#   Output the /etc/shadow line containing 'root' but also the line before and the line after
-#   Write a script of less than 4 lines that does all the following checks and, for each, returns 1) "EXISTS" if folder /myfolder exists 2) "WRITABLE BY THIS USER" if folder /myfolder is writable by current user 3) "LINK" if folder /myfolder is a link to some other place (no need to output where it links to)
+#	Output the /etc/shadow line containing 'root' but also the line before and the line after
+#	Write a script of less than 4 lines that does all the following checks and, for each, returns 1) "EXISTS" if folder /myfolder exists 2) "WRITABLE BY THIS USER" if folder /myfolder is writable by current user 3) "LINK" if folder /myfolder is a link to some other place (no need to output where it links to)
 #	Write a bash command that outputs the string $USER. Do it again but this time output the content of the environment variable $USER
 #	Create a cronjob that only runs from Mon to Fri between 11 pm and 7 am every 20 minutes and outputs "MAINTENANCE WINDOW" to the journalctl and to all active shells
 #	Using grep, show all the lines of /etc/shadow that do not begin with 'pippo', do not end with 'bob', contain '!' but also have to contain ':' OR '$', then also show the previous and next 3 lines
 #	Create a tar archive named 'test' from folder /etc with and without gzip compression, then extract it. Try again with xz compression
 #	Using sed, replace all occurrences of the word 'alice' with 'bob' in all and only the .cfg files in the folder /myfolder. Prepare it beforehand with 2 .cfg files that contain a few lines with the words "alice" and "bob"
 #	Using awk, show only the column 3 of /etc/shadow assuming separator ':'
-#   Write a script that takes two strings as bash parameters and outputs "OK" if they are the same string, "DIFF" otherwise 
+#	Write a script that takes two strings as bash parameters and outputs "OK" if they are the same string, "DIFF" otherwise 
 #	Set the default umask of a certain user so that every file and folder OKreates is 700 by default
 #	Create a custom tuned profile with associated comment that sets swappiness to 42 and persists between boots. Show which profile is currently on before setting the new one
 #	Check current timezone, set a new one and then go back to the correct one. Set a random, wrong time of the day. Set up the host to sync with ntp.pool.org, verify that sources are set and force a sync immediately
@@ -46,21 +46,21 @@
 #	Create a config file to do an unattended install of RHEL. Pass a cleartext root password in that same config and set it as "root" (no need to generate a hash). Verify the syntax is correct
 #	Use systemd-tmpfiles to clean /tmp every 90 minutes by creating the appropriate /etc/tmpfiles.d/tmp.conf 
 #	Show the current gateway and dns of the default podman network
-#   List all SELinux booleans and non-persistently set a specific one from off to on, then list all the booleans that changed in this session and ensure it only shows the one you edited without using grep
+#	List all SELinux booleans and non-persistently set a specific one from off to on, then list all the booleans that changed in this session and ensure it only shows the one you edited without using grep
 #	Create a script that outputs the sum of the numbers contained in two environment variables and read those variables from another file. Send that output to stderr
 #	Set up ssh on a nonstandard port and with passwordless login to host 2 and users root and myuser using a ed25519 key pair. Disable password login. The log in should happen using ssh key as user 'myuser' whose home sits on a NFS share on another server. Perform a dry run of a destructive rsync between /etc of host 1 and /etc of host 2 using ssh on that port. Verify that the sync only shows files that are different and not the entire /etc
 #	Demonstrate the usage of sealert command
 #	Create users 'beta', 'gamma' and 'delta'. User 'gamma' needs to set his password on the first login, 'beta' doesn't allow interactive shell login at all. User 'delta' password must be changed every 90 days at most but not sooner than 7 days
 #	Add user 'alice' to sudoers and ensure it can run a 'dnf update' without password
 #	Inspect the information of a remote container image
-#   Create a podman network with both ipv4 and ipv6 networking configured. Both networks should have subnet masks that allow for 16 addresses (14 hosts) only. Mention how many bits are needed to represent a single hexadecimal digit  
+#	Create a podman network with both ipv4 and ipv6 networking configured. Both networks should have subnet masks that allow for 16 addresses (14 hosts) only. Mention how many bits are needed to represent a single hexadecimal digit  
 #	Create a cronjob that executes daily at 5 am and which runs a script called 'latest.sh'. The script generates a list of all the files that have been created in the past 24 hours and writes it to /newfiles.txt
 #	Create a job that runs a dnf update daily at 9 am. If the host is down at 9am, make sure it still runs the task as soon as host is turned on
 #	Write a script that checks for the existence of folder /myfolder and exits with code 3 if it doesn't exist. If the folder exists, create 400 numbered folders in it, each one containing the subfolders "in" and "out", without using cycles. Simulate the script and verify it runs after creating the folder. Repeat the task using a for and while cycle
 #	Set up a VM to get a ipv6 address and connect to it succesfully through SSH. List several ways or configuration modifications that would break networking
 #	Set up two hosts and manually configure ipv4 and ipv6 networking without using a DHCP. Make sure you can connect to both hosts and that they ping each other. Connect with SSH that is listening on a nonstandard port and install keys using ipv6 protocol and then visit the newly created config file
-#   Taking /etc/selinux/config file, only show the lines that don't begin with a comment (#) and that aren't empty
-#   Show which SELinux tags are currently associated with port 80 (use a grep switch that ignores partial word matches like 8080), then add the same tag to port 8080
-#   Using the appropriate tool, recursively list all the SELinux contexts of /var/run subfolders. Do the same with 'ls', recursively listing only the folders. When done, create a new folder named /mytest and give it the context httpd_log_t. Make sure it applies to the folder immediately and to any new files created inside that folder
-#   Set up a VM with ipv6 connectivity. Using a web management interface, connect through a web browser to the ipv6 address of the VM and create a new nested virtual machine. It's not necessary to actually run it or perform the OS install inside of it
-#   Using ipv6 connectivity for everything, set up a web server on host 1 and serve an appropriate answer file for unattended installs. Install a new VM in unattended way providing the answer file served from that web server
+#	Taking /etc/selinux/config file, only show the lines that don't begin with a comment (#) and that aren't empty
+#	Show which SELinux tags are currently associated with port 80 (use a grep switch that ignores partial word matches like 8080), then add the same tag to port 8080
+#	Using the appropriate tool, recursively list all the SELinux contexts of /var/run subfolders. Do the same with 'ls', recursively listing only the folders. When done, create a new folder named /mytest and give it the context httpd_log_t. Make sure it applies to the folder immediately and to any new files created inside that folder
+#	Set up a VM with ipv6 connectivity. Using a web management interface, connect through a web browser to the ipv6 address of the VM and create a new nested virtual machine. It's not necessary to actually run it or perform the OS install inside of it
+#	Using ipv6 connectivity for everything, set up a web server on host 1 and serve an appropriate answer file for unattended installs. Install a new VM in unattended way providing the answer file served from that web server
