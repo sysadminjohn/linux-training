@@ -51,7 +51,7 @@
 #	Set up ssh on a nonstandard port and with passwordless login to host 2 and users root and myuser using a ed25519 key pair. Disable password login. The log in should happen using ssh key as user 'myuser' whose home sits on a NFS share on another server. Perform a dry run of a destructive rsync between /etc of host 1 and /etc of host 2 using ssh on that port. Verify that the sync only shows files that are different and not the entire /etc
 #	Demonstrate the usage of sealert command, then show SELinux's Access Vector Cache log entries
 #	Create users 'beta', 'gamma' and 'delta'. User 'gamma' needs to set his password on the first login, 'beta' doesn't allow interactive shell login at all. User 'delta' password must be changed every 90 days at most but not sooner than 7 days
-#	Add user 'alice' to sudoers and ensure it can run a 'dnf update' without password
+#	Add user 'alice' to sudoers and ensure it can run a 'dnf update' without password. Additionally, make it so that the sudo password only has to be retyped every 5 minutes
 #	Inspect the information of a remote container image
 #	Create a podman network with both ipv4 and ipv6 networking configured. Both networks should have subnet masks that allow for 16 addresses (14 hosts) only. Mention how many bits are needed to represent a single hexadecimal digit  
 #	Create a cronjob that executes daily at 5 am and which runs a script called 'latest.sh'. The script generates a list of all the files that have been created in the past 24 hours and writes it to /newfiles.txt
