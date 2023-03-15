@@ -19,7 +19,7 @@
 #	Using grep, show all the lines of /etc/shadow that do not begin with 'pippo', do not end with 'bob', contain '!' but also have to contain ':' OR '$', then also show the previous and next 3 lines
 #	Create a tar archive named 'test' from folder /etc with and without gzip compression, then extract it. Try again with xz compression
 #	Using sed, replace all occurrences of the word 'alice' with 'bob' in all and only the .cfg files in the folder /myfolder. Prepare it beforehand with 2 .cfg files that contain a few lines with the words "alice" and "bob"
-#	Using awk, show only the column 3 of /etc/shadow assuming separator ':'
+#	Using awk, show only the column 3 of /etc/shadow assuming separator ':', then print the last column assuming separator '$'
 #	Write a script that takes two strings as bash parameters and outputs "OK" if they are the same string, "DIFF" otherwise 
 #	Set the default umask of a certain user so that every file and folder OKreates is 700 by default
 #	Create a custom tuned profile with associated comment that sets swappiness to 42 and persists between boots. Show which profile is currently on before setting the new one
