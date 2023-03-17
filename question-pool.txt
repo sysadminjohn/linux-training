@@ -32,7 +32,6 @@
 #	Regenerate grub assuming both BIOS and EFI boot. Remove the initramfs of the latest kernel in /boot and try to boot. Solve the situation so that you can boot again with the latest kernel
 #	Make room on an existing disk for a new swap partition and use it persistently. Increase swap further creating a new persistent swap volume but, for this second swap space, don't use a partition
 #	Make sure that user bob cannot create cronjobs
-#	Configure /run/test directory to hold temporary files. If the files aren't being read for more than 2 minutes, files are removed automatically. Directory permissions should be so that users outside the group should not be able to read folder content 
 #	Start a process with a 100% artificial single core CPU load (you can use built-in Linux commands). Start it with the realtime priority, then set it to run lowest priority and change its scheduling to idle.
 #	Create a folder /special and set permissions so that 'alice' and 'bob', belonging to two different groups, can both read and write to the folder, but not anyone else 
 #	Create a folder /external and set permissions so that 1) it belongs to group 'external' 2) every new file belongs to 'external' 3) users can only remove the files they create 4) a script with content `sleep infinity` in the folder always runs as owner user regardless of who launches it
@@ -43,7 +42,7 @@
 #	Use a single command to persistently enable firewall services: rpc-bind mountd nfs
 #	Using firewalld, for the internal zone only, non-persistently allow all traffic from source 10.0.0.10/24 and block all the communications from 10.0.0.11/24. Verify that the setting applied, then non-persistently and silently drop all traffic coming from an entire network interface and log such blocks in the journalctl
 #	Create a config file to do an unattended install of RHEL. Pass a cleartext root password in that same config and set it as "root" (no need to generate a hash). Verify the syntax is correct
-#	Use systemd-tmpfiles to clean /tmp so that files older than 90 minutes are removed by creating the appropriate /etc/tmpfiles.d/tmp.conf. The folder should be created if it doesn't exist and if it does, its content should be wiped.
+#	Use the appropriate systemd facility to clean /tmp so that files older than 90 minutes are removed by creating the appropriate config in /etc. The folder should be created if it doesn't exist and if it does, its content should be wiped. Also configure /run/test directory to hold temporary files. If the files aren't being read for more than 2 minutes, files are removed automatically. Directory permissions should be so that users outside the group should not be able to read folder content 
 #	Show the current gateway and dns of the default podman network
 #	List all SELinux booleans and non-persistently set a specific one from off to on, then list all the booleans that changed in this session and ensure it only shows the one you edited without using grep
 #	Create a script that outputs the sum of the numbers contained in two environment variables and read those variables from another file. Send that output to stderr

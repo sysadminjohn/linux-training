@@ -21,10 +21,15 @@ Options:
     -h, --help
         Print this help message and exit.
 
+
     -c, --continuous
+        Shows one random question each time, without removing previous questions from the list.
+        
         The same question can show up more than once and the program runs continuously. 
+        
         Repeating the same task more than once within a few minutes can help with memory 
-        formation and recall
+        formation and recall, however due to nature of randomness some of the questions in the
+        pool may take a very long time to actually show up.
 
 Arguments:
     N   
@@ -32,7 +37,7 @@ Arguments:
 
 
 Examples:
-    sh linux-random.sh
+    sh linux-random.sh 
         Interactive unique mode: questions are only shown once
 
     sh linux-random.sh --continuous
@@ -92,19 +97,17 @@ interactive_mode_continuous() {
         echo ""
         echo "$(shuf -n 1 question-pool.txt)"
         echo ""
+        echo ""
+        echo ""
         echo "_______________________________________________________________________"
         echo "[Continuous mode]"
+        echo ""
         echo "CTRL+C	exit"
         echo "ENTER	new question"
         read continue
         
       done 
 
-    
-    echo "============================================================"
-    echo "DONE: All questions cycled. Re-run the program to go at it again with a newly randomized list"
-    echo ""
-    echo ""
 }
 
 ######################################################################################################################################
@@ -116,33 +119,39 @@ interactive_mode_unique() {
     shuf question-pool.txt > randomized-question-pool.txt
     mapfile -t LINUX_TRAINING_RANDOMIZED_QUESTION_POOL < randomized-question-pool.txt
 
-    QUESTIONS_REMAINING=$(wc -l randomized-question-pool.txt | awk '{ print $1 }')
+    QUESTIONS_LEFT=$(wc -l randomized-question-pool.txt | awk '{ print $1 }')
     QUESTION_NUMBER=0
 
     rm randomized-question-pool.txt 2>/dev/null 
 
-    while [[ QUESTIONS_REMAINING -gt 0 ]] ; 
+    while [[ QUESTIONS_LEFT -gt 0 ]] ; 
     do
         clear
         echo "_______________________________________________________________________"
         echo ""
         echo "${LINUX_TRAINING_RANDOMIZED_QUESTION_POOL[$QUESTION_NUMBER]}"
         echo ""
+        echo ""
+        echo ""
         echo "_______________________________________________________________________"
-        echo "[$((QUESTIONS_REMAINING-1)) questions left]"
+        echo "[$((QUESTIONS_LEFT-1)) questions left]"
+        echo "[Continuous mode: off]"
+        echo ""
         echo "CTRL+C	exit"
         echo "ENTER	new question"
         read continue
 
         QUESTION_NUMBER=$(($QUESTION_NUMBER + 1))
-        QUESTIONS_REMAINING=$((QUESTIONS_REMAINING - 1))
+        QUESTIONS_LEFT=$((QUESTIONS_LEFT - 1))
         
     done 
 
     
     echo "============================================================"
-    echo "DONE: All questions cycled. Re-run the program to go at it again with a newly randomized list"
+    echo "DONE: All questions in the pool were shown."
     echo ""
+    echo "Re-run the program to go at it again with a newly randomized list"
+    echo "or re-run it with the -c option to enable continuous mode"
     echo ""
 }
 
