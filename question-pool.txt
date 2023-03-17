@@ -1,7 +1,7 @@
 #	Run a find command and redirect stdout and stderr to separate files 
-#	Register and attach a subscription
+#	Register and attach a subscription, then confirm you are pointing to the correct repositories by showing how many rpm packages are available and the repository sizes
 #	Reset the root password using at least 3 methods
-#	Create a small script that echoes the word "TEST" for n times, where n is the first parameter passed to the script. If the script is run without parameters, ask for n in stdin. If the user inputs an invalid n, exit with exit code 4
+#	Create a small script that echoes the word "TEST" for n times, where n is the first parameter passed to the script. If the script is run without parameters, ask for n in stdin. If the user inputs an invalid n, exit with exit code 4. Verify the actual exit codes are correct after executing the script
 #	Create a partition that fills the entire disk, format it, then resize it to make room for another partition without breaking the previous fs
 #	Set up a new disk with MBR partitioning scheme. Create a volume in /storage using LVM, using 16MiB extents and with size 200 extents, verify both parameters are correctly set. Make an ext4 filesystem on it with 0% reserved blocks. Add one disk and span that filesystem across two physical disks. When done, move the LV to a third, bigger, disk and remove both the smaller ones, then remove everything and clean the fs and lvm headers
 #	Create a Stratis pool named 'data' that spans two disks with two filesystems named 'external' and 'internal'. Make sure it lists two devices and two filesystems. snapshot external, remove a file from 'external' fs. Access the removed file from the snapshot. Remove everything and return to a clean volume
@@ -10,14 +10,15 @@
 #	Set up a local repository from a RHEL iso file. Mount it locally and install packages from there. Do it again but this time have this repo be available in the entire LAN
 #	In your hypervisor, create a virtual network that has no DHCP and has ipv6 enabled. Install a new RHEL instance on a fresh virtual machine on that same network in unattended mode, using an install iso and an answer file that is served by a NFS share by host 1. Mention how you'd point to that answer file if it was on a local usb key attached to the fresh vm. During installation, access the anaconda live installation logs
 #	Create two volumes, ext4 and xfs. Perform filesystem checks on both. Dump the content of a broken xfs partition into another
-#	Make journalctl logs persistent, then list the most recent SELinux alerts in detail with sealert
-#	Simulate a log rotation with a certain configuration, showing what would happen
-#	Write a script of less than 4 lines that does all the following checks and, for each, returns 1) "EXISTS" if folder /myfolder exists 2) "WRITABLE BY THIS USER" if folder /myfolder is writable by current user 3) "LINK" if folder /myfolder is a link to some other place (no need to output where it links to)
-#	Write a bash command that outputs the string $USER. Do it again but this time output the content of the environment variable $USER
+#	Make journalctl logs persistent (it's possible but not necessary to modify any config file), then analyze SELinux alerts in detail with sealert
+#	Simulate a log rotation with a certain configuration, showing what would happen, then create a log rotation for logs /var/log/mylog so that they get rotated once every day and the last 30 rotations are kept. Ensure the log file is created if it's missing and, after each rotation, ensure the affected service is restarted 
+#   Using rsyslog, ensure all failed ssh login attempts are logged into a customly created 'mysecure' logfile, along with all authentication events of priority info or higher
+#	Write a short script that does all the following checks and, for each, returns 1) "EXISTS" if folder /myfolder exists 2) "WRITABLE BY THIS USER" if folder /myfolder is writable by current user 3) "LINK" if folder /myfolder is a link to some other place (no need to output where it links to)
+#   Write a bash command that echoes the following string: "$USER is root and $PWD is /root", assuming 'root' is the current user. If run from a random user like 'alice', the string should look like this: "$USER is alice and $PWD is /home/alice"
 #	Create a cronjob that only runs from Mon to Fri between 11 pm and 7 am every 20 minutes and outputs "MAINTENANCE WINDOW" to the journalctl and to all active shells
 #	Using grep, show all the lines of /etc/shadow that do not begin with 'pippo', do not end with 'bob', contain '!' but also have to contain ':' OR '$', then also show the previous and next 3 lines
 #	Create a tar archive named 'test' from folder /etc with and without gzip compression, then extract it. Try again with xz compression
-#	Using sed, replace all occurrences of the word 'alice' with 'bob' in all and only the .cfg files in the folder /myfolder. Prepare it beforehand with 2 .cfg files that contain a few lines with the words "alice" and "bob"
+#	Using sed, show line 9 of file "/etc/shadow". Replace all occurrences of the word 'alice' with 'bob' in all and only the .cfg files in the folder /myfolder. Prepare it beforehand with 2 .cfg files that contain a few lines with the words "alice" and "bob"
 #	Using awk, show only the column 3 of /etc/shadow assuming separator ':', then print the last column assuming separator '$'. Do the same only for the line containing 'root' but this time also show the line before and the line after
 #	Write a script that takes two strings as bash parameters and outputs "OK" if they are the same string, "DIFF" otherwise 
 #	Set the default umask of a certain user so that every file and folder the user creates are 600 (for files) and 700 (for folders) by default
@@ -31,7 +32,6 @@
 #	Using kernel parameters, put all CPU cores offline except one, then launch 'sleep 3000' and 'sleep 6000' processes. Send them in background, then experiment with their scheduling and nice value so that either 3000 or 6000 gets the most CPU. At the end, reenable all the CPU cores
 #	Regenerate grub assuming both BIOS and EFI boot. Remove the initramfs of the latest kernel in /boot and try to boot. Solve the situation so that you can boot again with the latest kernel
 #	Make room on an existing disk for a new swap partition and use it persistently. Increase swap further creating a new persistent swap volume but, for this second swap space, don't use a partition
-#	Make sure that user bob cannot create cronjobs
 #	Start a process with a 100% artificial single core CPU load (you can use built-in Linux commands). Start it with the realtime priority, then set it to run lowest priority and change its scheduling to idle.
 #	Create a folder /special and set permissions so that 'alice' and 'bob', belonging to two different groups, can both read and write to the folder, but not anyone else 
 #	Create a folder /external and set permissions so that 1) it belongs to group 'external' 2) every new file belongs to 'external' 3) users can only remove the files they create 4) a script with content `sleep infinity` in the folder always runs as owner user regardless of who launches it
@@ -39,16 +39,15 @@
 #	Set a cronjob for user 'alice' so that at 6.45 am, 7.45 am and 8.45 am every day, a script is run. The script sends a mail with subject "Subject" and body "Body" to root@localhost. Variabilize the script so that Subject and Body are passed from the cronjob entry
 #	List all sysctl variables. Persistently set vm swappiness to 6 without using any tuned profile. If a tuned profile is also set, make sure it doesn't override your new vm swappiness
 #	Update grub so that SELinux is disabled on next boot for all kernels. Also make sure that the initial grub timeout is set to 1 second
-#	Use a single command to persistently enable firewall services: rpc-bind mountd nfs
+#	Use a single command to persistently enable firewall services rpc-bind mountd nfs and then show the current firewall situation. When done, set it to log all the blocked packets in the journal
 #	Using firewalld, for the internal zone only, non-persistently allow all traffic from source 10.0.0.10/24 and block all the communications from 10.0.0.11/24. Verify that the setting applied, then non-persistently and silently drop all traffic coming from an entire network interface and log such blocks in the journalctl
 #	Create a config file to do an unattended install of RHEL. Pass a cleartext root password in that same config and set it as "root" (no need to generate a hash). Verify the syntax is correct
 #	Use the appropriate systemd facility to clean /tmp so that files older than 90 minutes are removed by creating the appropriate config in /etc. The folder should be created if it doesn't exist and if it does, its content should be wiped. Also configure /run/test directory to hold temporary files. If the files aren't being read for more than 2 minutes, files are removed automatically. Directory permissions should be so that users outside the group should not be able to read folder content 
-#	Show the current gateway and dns of the default podman network
 #	List all SELinux booleans and non-persistently set a specific one from off to on, then list all the booleans that changed in this session and ensure it only shows the one you edited without using grep
 #	Create a script that outputs the sum of the numbers contained in two environment variables and read those variables from another file. Send that output to stderr
 #	Set up ssh on a nonstandard port and with passwordless login to host 2 and users root and myuser using a ed25519 key pair. Disable password login. The log in should happen using ssh key as user 'myuser' whose home sits on a NFS share on another server. Perform a dry run of a destructive rsync between /etc of host 1 and /etc of host 2 using ssh on that port. Verify that the sync only shows files that are different and not the entire /etc
-#	Demonstrate the usage of sealert command, then show SELinux's Access Vector Cache log entries
-#	Create users 'beta', 'gamma' and 'delta'. User 'gamma' needs to set his password on the first login, 'beta' doesn't allow interactive shell login at all. User 'delta' password must be changed every 90 days at most but not sooner than 7 days
+#	Show where SELinux's Access Vector Cache events are logged then demonstrate usage of command sealert
+#	Create users 'beta', 'gamma' and 'delta'. User 'gamma' needs to set his password on the first login, 'beta' doesn't allow interactive shell login at all. User 'delta' password must be changed every 90 days at most but not sooner than 7 days. User 'delta' cannot create cronjobs
 #	Add user 'alice' to sudoers and ensure it can run a 'dnf update' without password but not a 'dnf install'. Additionally, make it so that the sudo password for alice has to be retyped every 1 minute but each sudo command done within less than 1 minute should not require it. For user 'bob', set the timer at 2 minutes
 #	Inspect the information of a remote container image
 #	Create a podman network with DNS, ipv4 and ipv6 networking configured. Both ipv4 and ipv6 subnets should have masks that allow for 16 addresses (14 hosts) only. Mention how many hexadecimal digits are needed to represent 8 bits  
@@ -58,8 +57,15 @@
 #	Set up a VM to get a ipv6 address and connect to it succesfully through SSH, then set up a ssh port forwarding so that you can curl port 9090 on your local machine and have as answer the cockpit service from the VM. For bonus points, set up ssh in a way that you can browse the internet through host 2, passing from host 1 first, using a SOCKS tunnel
 #	Set up two hosts and manually configure ipv4 and ipv6 networking without using a DHCP. Make sure you can connect to both hosts and that they ping each other. Connect with SSH that is listening on a nonstandard port and install keys using ipv6 protocol and then visit the newly created config file
 #	Taking /etc/selinux/config file, only show the lines that don't begin with a comment (#) and that aren't empty. Avoid using more than one single grep command if possible
-#   Ensure the folder /external can be read by anyone belonging to groups 'company-zeta' and 'company-theta'
+#   Ensure the folder /home/gamma can be read by anyone belonging to groups 'company-zeta' and 'company-theta' and by both users 'gamma' and 'beta'
 #	Show which SELinux tags are currently associated with port 80 (use a grep switch that ignores partial word matches like 8080), then add the same tag to port 8080
 #	Using the appropriate tool, recursively list all the SELinux contexts of /var/run subfolders. Do the same with 'ls', recursively listing only the folders. When done, create a new folder named /mytest and give it the context httpd_log_t. Make sure it applies to the folder immediately and to any new files created inside that folder
 #	Set up a VM with ipv6 connectivity. Using a web management interface, connect through a web browser to the ipv6 address of the VM and create a new nested virtual machine. It's not necessary to actually run it or perform the OS install inside of it
 #	Using ipv6 connectivity for everything, set up a web server on host 1 and serve an appropriate answer file for unattended installs. Install a new VM in unattended way providing the answer file served from that web server
+#   Create user named 'wtf' with a volatile home folder sitting in RAM (ensure the folder itself and the default files like .bashrc will be recreated at each boot with their default content). For this user only, persistently set bash history size to 1 and persistently alias the command 'cat' to 'tac', then do a cat of /etc/fstab. Make sure this configuration applies without having to log out and back in. Then, without removing the alias, attempt to ovveride it and obtain a normal cat output of /etc/fstab
+#   Create one file in the appropriate location so that only the root user can ssh into the host. Remove that file to enable all users again
+#   Use cat in interactive mode to create a multiline example file in /tmp/testfile.jpg then show 1) when the file was last accessed 2) the actual file type
+#   List all the currently active systemd timers with their actual live timers, then mount folder /specialmount persistently at each boot without using /etc/fstab
+#   Using nmcli (although preferrable, do not use nmtui for this task) non persistently add another random ipv4 address another random routable ipv6 address to an existing network interface without removing existing addresses  
+#   Copy the 'cat' binary into the home folder of /root. Non destructively append the string "This is a test" to the binary. Verify the string is part of the binary. Execute the binary and verify it still works, then zero the file and verify that it doesn't work anymore
+#   Create a zip archive of the folder /etc, then create a file named 'chimera' that works as 'cat' when invoked normally but also contains the /etc archive you just created. Verify both parts of the file work by extracting /etc and running cat from the same 'chimera' binary

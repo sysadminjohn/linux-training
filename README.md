@@ -19,9 +19,15 @@ Generate a new question each time ENTER is pressed:
 
 > sh linux-random.sh
 
+
 Generate  20 questions at once and then exit:
 
 > sh linux-random.sh 20
+
+
+Show all the available modes and options:
+
+> sh linux-random.sh--help
 
 
 

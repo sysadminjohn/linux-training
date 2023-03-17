@@ -95,7 +95,9 @@ interactive_mode_continuous() {
         clear
         echo "_______________________________________________________________________"
         echo ""
+
         echo "$(shuf -n 1 question-pool.txt)"
+
         echo ""
         echo ""
         echo ""
@@ -115,7 +117,6 @@ interactive_mode_continuous() {
 
 interactive_mode_unique() {
 
-    rm randomized-question-pool.txt 2>/dev/null
     shuf question-pool.txt > randomized-question-pool.txt
     mapfile -t LINUX_TRAINING_RANDOMIZED_QUESTION_POOL < randomized-question-pool.txt
 
