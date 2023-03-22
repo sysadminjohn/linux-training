@@ -27,7 +27,7 @@ Generate  20 questions at once and then exit:
 
 Show all the available modes and options:
 
-> sh linux-random.sh--help
+> sh linux-random.sh --help
 
 
 
